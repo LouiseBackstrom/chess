@@ -1,0 +1,65 @@
+<html>
+<script>
+    // Var x motsvarar schackbrädets bokstäver i x-led där 1=a, 2=b, 3=c osv. Var y motsvarar schackbrädets siffror i y-led.
+    var x = [1,2,3,4,5,6,7,8];
+    var y = [1,2,3,4,5,6,7,8];
+    
+    // Här sparas alla tänkbara steg som schackpjäsen kan ta i x-led och i y-led.
+    var xcoord = [];  
+    var ycoord = [];  
+    
+    // De steg som hästen kan ta i x-led räknas ut här och resultatet sparas i arrayen xcoord.
+    function xknight(x) {
+        var XpossMove = [2,1,-1,-2,-2,-1,1,2];
+            for (let i = 0; i < 8; i++){
+                xcoord.push(x + XpossMove[i]);   
+            }
+        return xcoord;
+    }
+    
+    // Här skriver man in den koordinat i x-led som hästen står på (från arrayen x), som sedan förs in i function xknight(x). (Varje siffra motsvarar en bokstav.)
+    console.log(xknight(5));
+       
+    // De steg som hästen kan ta i y-led räknas ut här och resultatet sparas  i arrayen ycoord.
+    function yknight(y) {
+        var YpossMove = [1,2,2,1,-1,-2,-2,-1]; 
+            for (let i = 0; i < 8; i++){
+                ycoord.push(y + YpossMove[i]); 
+            }
+        return ycoord;
+    }
+    
+    // Här skriver man in den koordinat i y-led som hästen står på (från arrayen y), som sedan förs in i function yknight(y).
+    console.log(yknight(5));
+    
+    // Här omvandlas xcoord arrayens siffror till bokstäver. De resultat som ligger utanför schackbrädet skrivs ut som undefined.
+    xcoord.forEach(function(item, i) { if (item == 1) xcoord[i] = 'a'; });
+    xcoord.forEach(function(item, i) { if (item == 2) xcoord[i] = 'b'; });
+    xcoord.forEach(function(item, i) { if (item == 3) xcoord[i] = 'c'; });
+    xcoord.forEach(function(item, i) { if (item == 4) xcoord[i] = 'd'; });
+    xcoord.forEach(function(item, i) { if (item == 5) xcoord[i] = 'e'; });
+    xcoord.forEach(function(item, i) { if (item == 6) xcoord[i] = 'f'; });    
+    xcoord.forEach(function(item, i) { if (item == 7) xcoord[i] = 'g'; });
+    xcoord.forEach(function(item, i) { if (item == 8) xcoord[i] = 'h'; });
+    xcoord.forEach(function(item, i) { if (item <= 0) xcoord[i] = 'undefined'; });
+    xcoord.forEach(function(item, i) { if (item > 8) xcoord[i] = 'undefined'; });
+    
+    // De resultat i arrayen ycoord som ligger utanför schackbrädet skrivs ut som undefined.
+    ycoord.forEach(function(item, i) { if (item <= 0) ycoord[i] = 'undefined'; });
+    ycoord.forEach(function(item, i) { if (item > 8) ycoord[i] = 'undefined'; });
+    
+    // Här samlas alla tänkbara rutor som hästen kan gå till på schackbrädet utifrån den ruta den står på från början.
+    var possibleMoves = [];
+    
+    // Här sätts x- och y-koordinaten ihop.
+    function knightMove() {
+        for (let i = 0; i < x.length; i++) {
+            possibleMoves.push(xcoord[i] + ycoord[i]);
+        }
+        return possibleMoves;  
+    }
+    
+    // Hästens möjliga positioner skrivs ut.
+    console.log(knightMove());
+</script>
+</html>
